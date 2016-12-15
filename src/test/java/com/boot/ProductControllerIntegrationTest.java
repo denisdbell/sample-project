@@ -11,7 +11,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.advantum.barcode.App;
+import com.advantum.App;
 import com.advantum.barcode.controller.product.ProductController;
 import com.advantum.barcode.model.Product;
 

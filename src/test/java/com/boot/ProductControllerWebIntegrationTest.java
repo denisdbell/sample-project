@@ -13,7 +13,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
 
-import com.advantum.barcode.App;
+import com.advantum.App;
 import com.advantum.barcode.model.Product;
 
 
