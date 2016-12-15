@@ -76,4 +76,18 @@ public class ActivityServiceIntegrationTest {
         Activity targetActivity = activityService.findOne(1);
         Assert.assertEquals("Activity description was correctl modified", "Activity Modified", targetActivity.getDescription());
     }
+
+    @Test
+    @Sql("../repository/dummy-data.sql")
+    public void testUpdateNonExistentActivity() {
+        Exception targetException = null;
+        try {
+            Activity activity = activityService.findOne(1);
+            activity.setDescription("Activity Modified");
+            activityService.update(100, activity);
+        } catch(Exception e) {
+            targetException = e;
+        }
+        Assert.assertNotNull("An exception must be thrown", targetException);
+    }
 }
