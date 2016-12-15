@@ -4,6 +4,7 @@ import com.advantum.activity.model.Activity;
 import com.advantum.activity.repository.ActivityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
 
@@ -22,5 +23,9 @@ public class ActivityService {
 
     public List<Activity> list() {
         return activityRepository.findAll();
+    }
+
+    public Activity findOne(Integer id) {
+        throw new NotImplementedException();
     }
 }

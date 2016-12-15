@@ -13,6 +13,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Column;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -49,5 +50,13 @@ public class ActivityServiceIntegrationTest {
 
         Activity activityFound = activityList.get(0);
         Assert.assertEquals("The found activity is the created one", activityFound.getActivityId(), activity.getActivityId());
+    }
+
+    @Test
+    @Sql("../repository/dummy-data.sql")
+    public void testFindActivity() {
+        Activity activity = activityService.findOne(1);
+
+        Assert.assertEquals("Found Activity with Id 1", "Activity description 01", activity.getDescription());
     }
 }
