@@ -1,7 +1,10 @@
 package com.advantum.activity.service;
 
 import com.advantum.App;
-import com.advantum.activity.model.*;
+import com.advantum.activity.model.Activity;
+import com.advantum.activity.model.ActivityDelay;
+import com.advantum.activity.model.ActivityType;
+import com.advantum.activity.model.User;
 import com.advantum.activity.repository.ActivityTypeRepository;
 import com.advantum.activity.repository.UserRepository;
 import org.junit.Assert;
@@ -13,7 +16,6 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Column;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -89,5 +91,15 @@ public class ActivityServiceIntegrationTest {
             targetException = e;
         }
         Assert.assertNotNull("An exception must be thrown", targetException);
+    }
+
+    @Test
+    @Sql("../repository/dummy-data.sql")
+    public void testDeleteActivity() {
+        activityService.delete(1);
+
+        Activity targetActivity = activityService.findOne(1);
+
+        Assert.assertNull("Activity was deleted", targetActivity);
     }
 }
