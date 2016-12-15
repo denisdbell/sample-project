@@ -2,6 +2,7 @@ package com.advantum.activity.service;
 
 import com.advantum.activity.model.Activity;
 import com.advantum.activity.repository.ActivityRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -30,6 +31,8 @@ public class ActivityService {
     }
 
     public Activity update(Integer activityId, Activity activity) {
-        throw new NotImplementedException();
+        Activity targetActivity = activityRepository.getOne(activityId);
+        BeanUtils.copyProperties(activity, targetActivity);
+        return activityRepository.save(targetActivity);
     }
 }
