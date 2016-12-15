@@ -40,6 +40,6 @@ public class ActivityService {
     }
 
     public void delete(Integer id) {
-        throw new NotImplementedException();
+        activityRepository.delete(id);
     }
 }
