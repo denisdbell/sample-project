@@ -65,4 +65,15 @@ public class ActivityServiceIntegrationTest {
         Activity activity = activityService.findOne(9999);
         Assert.assertNull("There should be no Activity found", activity);
     }
+
+    @Test
+    @Sql("../repository/dummy-data.sql")
+    public void testUpdateActivity() {
+        Activity activity = activityService.findOne(1);
+        activity.setDescription("Activity Modified");
+        activityService.update(activity.getActivityId(), activity);
+
+        Activity targetActivity = activityService.findOne(1);
+        Assert.assertEquals("Activity description was correctl modified", "Activity Modified", targetActivity.getDescription());
+    }
 }

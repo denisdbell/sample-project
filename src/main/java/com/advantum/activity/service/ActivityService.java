@@ -28,4 +28,8 @@ public class ActivityService {
     public Activity findOne(Integer id) {
         return activityRepository.findOne(id);
     }
+
+    public Activity update(Integer activityId, Activity activity) {
+        throw new NotImplementedException();
+    }
 }
