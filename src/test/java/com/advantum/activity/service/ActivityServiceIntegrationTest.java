@@ -56,7 +56,13 @@ public class ActivityServiceIntegrationTest {
     @Sql("../repository/dummy-data.sql")
     public void testFindActivity() {
         Activity activity = activityService.findOne(1);
-
         Assert.assertEquals("Found Activity with Id 1", "Activity description 01", activity.getDescription());
+    }
+
+    @Test
+    @Sql("../repository/dummy-data.sql")
+    public void testFindFakeActivity() {
+        Activity activity = activityService.findOne(9999);
+        Assert.assertNull("There should be no Activity found", activity);
     }
 }
