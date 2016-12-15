@@ -26,6 +26,6 @@ public class ActivityService {
     }
 
     public Activity findOne(Integer id) {
-        throw new NotImplementedException();
+        return activityRepository.findOne(id);
     }
 }
