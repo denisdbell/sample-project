@@ -40,4 +40,15 @@ public class ActivityControllerTest {
 
         Assert.assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
+
+    @Test
+    public void testActivityGetMethodStatus() {
+        Activity activity = new Activity();
+        activity.setActivityId(1);
+        Mockito.when(activityService.findOne(1)).thenReturn(activity);
+
+        ResponseEntity<Activity> response = activityRestController.findOne(activity.getActivityId());
+
+        Assert.assertEquals(response.getStatusCode(), HttpStatus.OK);
+    }
 }

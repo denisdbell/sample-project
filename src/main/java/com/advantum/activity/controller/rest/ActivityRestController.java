@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
 
@@ -23,5 +24,9 @@ public class ActivityRestController {
     public ResponseEntity<List<Activity>> list() {
         List<Activity> activities = activityService.list();
         return new ResponseEntity<List<Activity>>(activities, HttpStatus.OK);
+    }
+
+    public ResponseEntity<Activity> findOne(Integer activityId) {
+        throw new NotImplementedException();
     }
 }
