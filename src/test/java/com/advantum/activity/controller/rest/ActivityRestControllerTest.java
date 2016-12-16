@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by Sevila <josevilah@gmail.com> on 15/12/2016.
  */
-public class ActivityControllerTest {
+public class ActivityRestControllerTest {
 
     @Mock
     private ActivityService activityService;
