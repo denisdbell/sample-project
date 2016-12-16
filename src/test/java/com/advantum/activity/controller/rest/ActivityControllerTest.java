@@ -38,7 +38,7 @@ public class ActivityControllerTest {
 
         ResponseEntity<List<Activity>> response =  activityRestController.list();
 
-        Assert.assertEquals(response.getStatusCode(), HttpStatus.OK);
+        Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
     @Test
@@ -49,6 +49,15 @@ public class ActivityControllerTest {
 
         ResponseEntity<Activity> response = activityRestController.findOne(activity.getActivityId());
 
-        Assert.assertEquals(response.getStatusCode(), HttpStatus.OK);
+        Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    @Test
+    public void testActivityNotFoundStatusOnGetMethod() {
+        Mockito.when(activityService.findOne(1)).thenReturn(null);
+
+        ResponseEntity<Activity> response = activityRestController.findOne(1);
+
+        Assert.assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 }
