@@ -36,6 +36,7 @@ public class ActivityRestController {
     }
 
     public ResponseEntity<Activity> add(Activity activity) {
-        throw new NotImplementedException();
+        Activity createdActivity = activityService.add(activity);
+        return new ResponseEntity<Activity>(createdActivity, HttpStatus.OK);
     }
 }
