@@ -92,4 +92,11 @@ public class ActivityRestControllerTest {
 
         Assert.assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
+
+    @Test
+    public void testDeleteMethodStatus() {
+        ResponseEntity<Activity> response = activityRestController.delete(1);
+
+        Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
 }

@@ -49,4 +49,8 @@ public class ActivityRestController {
             return new ResponseEntity<Activity>(HttpStatus.NOT_FOUND);
         }
     }
+
+    public ResponseEntity<Activity> delete(Integer activityId) {
+        throw new NotImplementedException();
+    }
 }
