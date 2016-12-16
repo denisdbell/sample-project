@@ -6,9 +6,7 @@ import com.advantum.activity.service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,12 +20,14 @@ public class ActivityRestController {
     @Autowired
     private ActivityService activityService;
 
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<Activity>> list() {
         List<Activity> activities = activityService.list();
         return new ResponseEntity<List<Activity>>(activities, HttpStatus.OK);
     }
 
-    public ResponseEntity<Activity> findOne(Integer activityId) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Activity> findOne(@PathVariable("id")  Integer activityId) {
         Activity activity = activityService.findOne(activityId);
         if (activity != null) {
             return new ResponseEntity<Activity>(activity, HttpStatus.OK);
@@ -36,12 +36,14 @@ public class ActivityRestController {
         }
     }
 
-    public ResponseEntity<Activity> add(Activity activity) {
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<Activity> add(@RequestBody Activity activity) {
         Activity createdActivity = activityService.add(activity);
         return new ResponseEntity<Activity>(createdActivity, HttpStatus.OK);
     }
 
-    public ResponseEntity<Activity> update(Integer activityId, Activity activity) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Activity> update(@PathVariable("id") Integer activityId, @RequestBody Activity activity) {
         try {
             Activity updatedActivity = activityService.update(activityId, activity);
             return new ResponseEntity<Activity>(updatedActivity, HttpStatus.OK);
@@ -50,7 +52,8 @@ public class ActivityRestController {
         }
     }
 
-    public ResponseEntity<Activity> delete(Integer activityId) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Activity> delete(@PathVariable("id") Integer activityId) {
         activityService.delete(activityId);
         return new ResponseEntity<Activity>(HttpStatus.OK);
     }
