@@ -1,6 +1,7 @@
 package com.advantum.activity.controller.rest;
 
 import com.advantum.activity.model.Activity;
+import com.advantum.activity.service.ActivityNotFoundRuntimeException;
 import com.advantum.activity.service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,6 +42,7 @@ public class ActivityRestController {
     }
 
     public ResponseEntity<Activity> update(Integer activityId, Activity activity) {
-        throw new NotImplementedException();
+        Activity updatedActivity = activityService.update(activityId, activity);
+        return new ResponseEntity<Activity>(updatedActivity, HttpStatus.OK);
     }
 }
