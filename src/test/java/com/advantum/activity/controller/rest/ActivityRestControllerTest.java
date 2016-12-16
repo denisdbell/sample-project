@@ -1,6 +1,7 @@
 package com.advantum.activity.controller.rest;
 
 import com.advantum.activity.model.Activity;
+import com.advantum.activity.service.ActivityNotFoundRuntimeException;
 import com.advantum.activity.service.ActivityService;
 import org.junit.Assert;
 import org.junit.Before;
@@ -81,5 +82,14 @@ public class ActivityRestControllerTest {
         ResponseEntity<Activity> response = activityRestController.update(activity.getActivityId(), activity);
 
         Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    @Test
+    public void testUpdateMethodStatusNotFoundForNonExistentActivity() {
+        Mockito.when(activityService.update(1, null)).thenThrow(ActivityNotFoundRuntimeException.class);
+
+        ResponseEntity<Activity> response = activityRestController.update(1, null);
+
+        Assert.assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 }

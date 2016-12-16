@@ -42,7 +42,11 @@ public class ActivityRestController {
     }
 
     public ResponseEntity<Activity> update(Integer activityId, Activity activity) {
-        Activity updatedActivity = activityService.update(activityId, activity);
-        return new ResponseEntity<Activity>(updatedActivity, HttpStatus.OK);
+        try {
+            Activity updatedActivity = activityService.update(activityId, activity);
+            return new ResponseEntity<Activity>(updatedActivity, HttpStatus.OK);
+        } catch (ActivityNotFoundRuntimeException e) {
+            return new ResponseEntity<Activity>(HttpStatus.NOT_FOUND);
+        }
     }
 }
