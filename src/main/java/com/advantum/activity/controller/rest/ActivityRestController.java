@@ -51,6 +51,7 @@ public class ActivityRestController {
     }
 
     public ResponseEntity<Activity> delete(Integer activityId) {
-        throw new NotImplementedException();
+        activityService.delete(activityId);
+        return new ResponseEntity<Activity>(HttpStatus.OK);
     }
 }
