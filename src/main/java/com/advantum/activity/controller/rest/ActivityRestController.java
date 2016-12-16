@@ -39,4 +39,8 @@ public class ActivityRestController {
         Activity createdActivity = activityService.add(activity);
         return new ResponseEntity<Activity>(createdActivity, HttpStatus.OK);
     }
+
+    public ResponseEntity<Activity> update(Integer activityId, Activity activity) {
+        throw new NotImplementedException();
+    }
 }

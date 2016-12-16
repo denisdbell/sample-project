@@ -70,4 +70,16 @@ public class ActivityRestControllerTest {
 
         Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
     }
+
+    @Test
+    public void testUpdateHttpResponse() {
+        Activity activity = new Activity();
+        activity.setActivityId(1);
+
+        Mockito.when(activityService.update(1, activity)).thenReturn(activity);
+
+        ResponseEntity<Activity> response = activityRestController.update(activity.getActivityId(), activity);
+
+        Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
 }
