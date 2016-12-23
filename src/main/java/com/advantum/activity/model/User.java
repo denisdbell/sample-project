@@ -6,16 +6,24 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
+ * Stores information about an User
+ *
  * Created by Sevila <josevilah@gmail.com> on 14/12/2016.
  */
 @Entity
 @Table(name = "_user")
 public class User {
 
+    /**
+     * Identifier of the User
+     */
     @Id
     @Column(name = "id")
     private Integer userId;
 
+    /**
+     * User's username
+     */
     private String username;
 
     public User() {

@@ -5,33 +5,62 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Stores information about the different types an Activity can be specified with.
+ *
  * Created by Sevila <josevilah@gmail.com> on 14/12/2016.
  */
 @Entity
 @Table(name = "activity_type")
 public class ActivityType {
 
+    /**
+     * Identifier of the Activity Type
+     */
     @Id
     @Column(name = "id")
     private Integer activityTypeId;
 
+    /**
+     * List of Activity Categories suitables for an Activity
+     */
     @ManyToMany
     private List<ActivityCategory> activityCategories = new ArrayList<ActivityCategory>();
 
+    /**
+     * Name of the Activity Type
+     */
     private String name;
 
+    /**
+     * Indicates if it is mandatory
+     */
     private boolean mandatory;
 
+    /**
+     * Stores how many occurrences the Activity Type has
+     */
     private Integer occurrences;
 
+    /**
+     * Indicates whether is a ranged Activity or not
+     */
     private Boolean rangedActivityIndicator;
 
+    /**
+     * The Activity Type's order
+     */
     @Column(name = "_order")
     private Integer order;
 
+    /**
+     * Vessel Types on which the Activity Type may be used
+     */
     @ManyToMany
     private List<VesselType> vesselTypes = new ArrayList<VesselType>();
 
+    /**
+     * Description of the Activity Type
+     */
     private String description;
 
     public ActivityType() {

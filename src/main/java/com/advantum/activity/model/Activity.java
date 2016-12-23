@@ -5,34 +5,60 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * Stores information about an activity.
+ *
  * Created by Sevila <josevilah@gmail.com> on 14/12/2016.
  */
 @Entity
 @Table(name = "activity")
 public class Activity {
-    // TODO: change Date by Date
+
+    /**
+     * Identifier of the Activity instance
+     */
     @Id
     @Column(name = "id")
     private Integer activityId;
 
+    /**
+     * Description of the Activity
+     */
     private String description;
 
+    /**
+     * Date on which the Activity starts
+     */
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "start_date_time")
     private Date startDateTime;
 
+    /**
+     * Date on which the Activity ends
+     */
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "end_date_time")
     private Date endDateTime;
 
+    /**
+     * Value of the Activity
+     */
     private String value;
 
+    /**
+     * The ActivityType
+     */
     @ManyToOne
     private ActivityType activityType;
 
+    /**
+     * List carrying the ActivityDelays of the Activity
+     */
     @OneToMany()
     private List<ActivityDelay> activityDelays;
 
+    /**
+     * Owner of the Activity
+     */
     @ManyToOne
     private User user;
 

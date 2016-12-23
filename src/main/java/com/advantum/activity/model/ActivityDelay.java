@@ -4,24 +4,37 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
+ * Stores information about an Activity Delay.
+ *
  * Created by Sevila <josevilah@gmail.com> on 14/12/2016.
  */
 @Entity
 @Table(name = "activity_delay")
 public class ActivityDelay {
-    // TODO: change Date by ZonedDateTime
+    /**
+     * Identifier of the Activity Delay
+     */
     @Id
     @Column(name = "id")
     private Integer activityDelayId;
 
+    /**
+     * Date on which the Activity Delay started
+     */
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "start_date_time")
     private Date startDateTime;
 
+    /**
+     * Date on which the Activity Delay ended
+     */
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "end_date_time")
     private Date endDateTime;
 
+    /**
+     * Reason of the Activity Delay
+     */
     private String reason;
 
     public ActivityDelay() {

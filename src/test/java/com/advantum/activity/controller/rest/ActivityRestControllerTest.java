@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Sevila <josevilah@gmail.com> on 15/12/2016.
+ * @author José Sevila <josevilah@gmail.com>
  */
 public class ActivityRestControllerTest {
 

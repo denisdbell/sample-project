@@ -7,13 +7,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Created by Sevila <josevilah@gmail.com> on 15/12/2016.
+ * @author José Sevila <josevilah@gmail.com>
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(App.class)
@@ -49,5 +50,12 @@ public class ActivityRestControllerIntegrationTest {
         ResponseEntity<Activity> response = activityRestController.findOne(1);
         Activity foundActivity = response.getBody();
         Assert.assertEquals("The activity was modified", "Modified activity Description", foundActivity.getDescription());
+    }
+
+    @Test
+    @Sql("../../repository/dummy-data.sql")
+    public void testUpdateActivityWithNullValue() {
+        ResponseEntity<Activity> update = activityRestController.update(1, null);
+        Assert.assertEquals("400 Bad Request", HttpStatus.BAD_REQUEST, update.getStatusCode());
     }
 }

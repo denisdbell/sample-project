@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * Created by Sevila <josevilah@gmail.com> on 15/12/2016.
+ * @author José Sevila <josevilah@gmail.com>
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(App.class)

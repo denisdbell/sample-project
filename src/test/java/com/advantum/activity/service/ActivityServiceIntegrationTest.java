@@ -8,7 +8,9 @@ import com.advantum.activity.model.User;
 import com.advantum.activity.repository.ActivityTypeRepository;
 import com.advantum.activity.repository.UserRepository;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -21,7 +23,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Sevila <josevilah@gmail.com> on 15/12/2016.
+ * @author José Sevila <josevilah@gmail.com>
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -101,5 +103,49 @@ public class ActivityServiceIntegrationTest {
         Activity targetActivity = activityService.findOne(1);
 
         Assert.assertNull("Activity was deleted", targetActivity);
+    }
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+    @Test
+    public void testCreateNullActivity() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("The given activity must not be null");
+        activityService.add(null);
+    }
+
+    @Test
+    public void testFindOneActivityWithIdNull() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("The given id must not be null");
+        activityService.findOne(null);
+    }
+
+    @Test
+    public void testDeleteActivityWithNullAsId() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("The given id must not be null");
+        activityService.delete(null);
+    }
+
+    @Test
+    @Sql("../repository/dummy-data.sql")
+    public void testUpdateActivityWithNullAsId() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("The given activityId must not be null");
+
+        Activity activity = activityService.findOne(1);
+        activity.setDescription("Activity Modified");
+        activityService.update(null, activity);
+    }
+
+    @Test
+    @Sql("../repository/dummy-data.sql")
+    public void testUpdateActivityWithNullAsActivity() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("The given activity must not be null");
+
+        activityService.update(1, null);
     }
 }
